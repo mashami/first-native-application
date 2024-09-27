@@ -21,13 +21,13 @@ const TrendingVideos = () => {
   ]
 
   const windowWidth = Dimensions.get("window").width
-  const imageWidth = 200 // The width of your thumbnail image
-  const imageMargin = 12 // Right margin on each image
+  const imageWidth = 200
+  const imageMargin = 12
 
   const onScroll = (event: any) => {
     const scrollPosition = event.nativeEvent.contentOffset.x
-    const centerPosition = scrollPosition + windowWidth / 2 // Center of the screen
-    const newIndex = Math.round(centerPosition / (imageWidth + imageMargin)) // Calculate index of the image in the center
+    const centerPosition = scrollPosition + windowWidth / 2
+    const newIndex = Math.round(centerPosition / (imageWidth + imageMargin))
     setCurrentIndex(newIndex)
   }
 
@@ -79,17 +79,17 @@ const TrendingVideos = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         onScroll={onScroll}
-        scrollEventThrottle={16} // Set this for smoother scrolling events
+        scrollEventThrottle={16}
       >
         {videos.map((video, index) => {
           const isCenter = index === currentIndex
-          const scale = isCenter ? 1 : 0.8 // Zoom out non-centered images
+          const scale = isCenter ? 1 : 0.9
 
           return (
             <View key={video.id} style={styles.videoItem}>
               <Animated.Image
                 source={video.image}
-                style={[styles.thumbnail, { transform: [{ scale }] }]} // Apply scale
+                style={[styles.thumbnail, { transform: [{ scale }] }]}
               />
             </View>
           )

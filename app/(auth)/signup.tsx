@@ -1,5 +1,5 @@
 import MyButton from "@/components/Button/Button"
-import { Link } from "expo-router"
+import { Link, router } from "expo-router"
 import React, { useState } from "react"
 import { Image, StyleSheet, Text, TextInput, View } from "react-native"
 
@@ -33,6 +33,11 @@ const signup = () => {
   })
 
   const image1 = require("@/assets/images/image1.png")
+
+  const handleButton = () => {
+    if (!username || !email || !passWord) return
+    else router.push("/")
+  }
 
   return (
     <View style={styles.container}>
@@ -108,7 +113,7 @@ const signup = () => {
                 fontSize: 16
                 // fontWeight: "500"
               }}
-              placeholder="Enter your user name"
+              placeholder="Enter your email"
               placeholderTextColor="#7B7B8B"
               value={email}
               onChangeText={setEmail}
@@ -136,14 +141,14 @@ const signup = () => {
                 fontSize: 16,
                 fontWeight: "500"
               }}
-              placeholder="Enter your user name"
+              placeholder="Enter your Password"
               placeholderTextColor="#7B7B8B"
               value={passWord}
               onChangeText={setPassword}
             />
           </View>
 
-          <MyButton text="Sign Up" />
+          <MyButton text="Sign Up" handleButton={handleButton} />
         </View>
         <View
           style={{

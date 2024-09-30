@@ -4,25 +4,11 @@ import { Text, TouchableOpacity } from "react-native"
 
 interface MyButtonProps {
   text: string
+  path?: string
+  handleButton?: () => void
 }
 
-const MyButton = ({ text }: MyButtonProps) => {
-  // const [fontLoaded, setFontLoaded] = useState(false)
-
-  // useEffect(() => {
-  //   async function loadFont() {
-  //     await Font.loadAsync({
-  //       "Poppins-SemiBold": require("@/assets/fonts/Poppins/Poppins-SemiBold.ttf")
-  //     })
-  //     setFontLoaded(true)
-  //   }
-  //   loadFont()
-  // }, [])
-
-  // if (!fontLoaded) {
-  //   return null // or a loading indicator
-  // }
-
+const MyButton = ({ text, handleButton }: MyButtonProps) => {
   return (
     <TouchableOpacity
       style={{
@@ -32,10 +18,10 @@ const MyButton = ({ text }: MyButtonProps) => {
         borderRadius: 8,
         width: "100%"
       }}
+      onPress={handleButton}
     >
       <Text
         style={{
-          // fontFamily: "Poppins-SemiBold",
           fontSize: 18,
           lineHeight: 22.4,
           textAlign: "center",

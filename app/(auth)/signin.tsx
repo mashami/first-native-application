@@ -1,12 +1,11 @@
 import MyButton from "@/components/Button/Button"
-import { Link } from "expo-router"
+import { Link, router } from "expo-router"
 import React, { useState } from "react"
 import { Image, StyleSheet, Text, TextInput, View } from "react-native"
 
 const signin = () => {
-  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
-  const [passWord, setPassword] = useState("")
+  const [password, setPassword] = useState("")
 
   const styles = StyleSheet.create({
     container: {
@@ -33,6 +32,14 @@ const signin = () => {
   })
 
   const image1 = require("@/assets/images/image1.png")
+
+  const handleButton = () => {
+    if (!email || !password) {
+      return
+    } else {
+      return router.push("/")
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -80,7 +87,7 @@ const signin = () => {
                 fontSize: 16
                 // fontWeight: "500"
               }}
-              placeholder="Enter your user name"
+              placeholder="Enter your email"
               placeholderTextColor="#7B7B8B"
               value={email}
               onChangeText={setEmail}
@@ -108,9 +115,9 @@ const signin = () => {
                 fontSize: 16
                 // fontWeight: "500"
               }}
-              placeholder="Enter your user name"
+              placeholder="Enter your password"
               placeholderTextColor="#7B7B8B"
-              value={passWord}
+              value={password}
               onChangeText={setPassword}
             />
           </View>
@@ -131,7 +138,7 @@ const signin = () => {
             Forgot password
           </Link>
 
-          <MyButton text="Sign Up" />
+          <MyButton text="Sign in" handleButton={handleButton} />
         </View>
         <View
           style={{

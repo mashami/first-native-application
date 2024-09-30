@@ -1,5 +1,6 @@
 import PostVideo from "@/components/PostVideo/PostVideo"
 import * as Font from "expo-font"
+import { router } from "expo-router"
 import { useEffect, useState } from "react"
 import {
   Image,
@@ -7,6 +8,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
@@ -14,7 +16,6 @@ import Svg, { Path } from "react-native-svg"
 
 export default function profile() {
   const [fontLoaded, setFontLoaded] = useState(false)
-  const [searchValue, setSearchValue] = useState("")
 
   useEffect(() => {
     async function loadFont() {
@@ -89,20 +90,22 @@ export default function profile() {
 
   const code1 = require("@/assets/images/code1.jpg")
   const code2 = require("@/assets/images/code2.jpg")
-  const dogImage = require("@/assets/images/dog.jpg")
-  const gamePicture = require("@/assets/images/videoimage.jpg")
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"light-content"} />
       <ScrollView showsVerticalScrollIndicator={false} scrollEnabled>
         <View style={{ paddingHorizontal: 12, paddingBottom: 24 }}>
-          <View
+          <TouchableOpacity
             style={{
               display: "flex",
               alignItems: "flex-end",
-              justifyContent: "flex-end"
+              alignSelf: "flex-end",
+              justifyContent: "flex-end",
+              cursor: "pointer",
+              flexDirection: "row"
             }}
+            onPress={() => router.push("/signin")}
           >
             <Svg width={34} height={34} viewBox="0 0 24 24" fill="none">
               <Path
@@ -120,7 +123,7 @@ export default function profile() {
                 strokeLinejoin="round"
               />
             </Svg>
-          </View>
+          </TouchableOpacity>
 
           <View
             style={{
